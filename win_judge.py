@@ -36,29 +36,42 @@ def win_judge(player_tiles):
 def is_valid_three_card_groups(remaining):
     remaining.sort()
     i=0
+    t=0
+    q=0
     while len(remaining) > 0:
-        if len( remaining)==0:
-            break
-        for i in range(len(remaining)):
-            if i + 2 < len(remaining) and remaining[i] == remaining[i + 1] == remaining[i + 2]:
+        if len(remaining) >= 3:
+            if remaining[i] == remaining[i + 1] == remaining[i + 2]:
                 remaining = remaining[:i] + remaining[i + 3:]
+                if len(remaining) == 0:
+                    return True
+                else:
+                    continue
+        for j in range(len(remaining)-1):
+            if (remaining[t][1] == remaining[j+1][1] and
+                    int(remaining[t][-1])+1==int(remaining[j+1][-1])):
+                t=j+1
+                for k in range(t,len( remaining)-1):
+                    if (remaining[t][1] == remaining[k+1][1] and
+                        int(remaining[t][-1])+1==int(remaining[k+1][-1])):
+                        remaining[t]=0
+                        remaining[k+1]=0
+                        remaining[0]=0
+                        remaining=[x for x in remaining if x!=0]
+                        t=0
+                        if len(remaining) == 0:
+                            return True
+                        break
                 break
-            if i + 2 < len(remaining) and remaining[i][1] == remaining[i + 1][1] == remaining[i + 2][1]\
-                    and (int(remaining[i][-1])+2 == int(remaining[i + 1][-1])+1 == int(remaining[i + 2][-1])):
-                remaining = remaining[:i] + remaining[i + 3:]
-                break
-        i += 1
-        if i >= 5:
+        q+=1
+        if q>=7:
             return False
-    if len(remaining) == 0:
-        return True
     return False
 
 
 
 
 if __name__ == '__main__':
-    player_tiles = ['tiao1', 'tiao2', 'tiao3', 'tiao2', 'tiao3', 'tiao4', 'tiao3',
-                    'tiao3', 'tiao3', 'tong1', 'tong1', 'tong1']
-    print(is_valid_three_card_groups(player_tiles))
+    player_tiles = ['tiao1', 'tiao2', 'tiao3', 'tiao3', 'tiao3', 'tiao6', 'tiao3',
+                    'tiao4', 'tiao5', 'tong2', 'tong2', 'tong2','tong3','tong3']
+    print(win_judge(player_tiles))
 
