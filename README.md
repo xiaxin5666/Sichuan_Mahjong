@@ -2,13 +2,13 @@
 ## 1、使用方法：
 运行single_play.py即可实现一个人玩，只有玩家自己在摸牌打牌，因此胜利条件为自摸。
 ## 2、文件简介：
-###operate.py
+### operate.py
 打、摸等操作
-###shuffle.py
+### shuffle.py
 发牌
-###tile.py
+### tile.py
 麻将牌的定义
-###single_play.py
+### single_play.py
 单人摸牌模式，简单测试游玩
-###win_judge.py
+### win_judge.py
 胜利判断规则
