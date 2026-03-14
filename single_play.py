@@ -1,0 +1,22 @@
+from shuffle import shuffle
+from win_judge import win_judge
+from operate import get,throw,peng,gang
+
+if __name__ == "__main__":
+    player_tiles_1, tiles = shuffle()
+    player_tiles_1 = player_tiles_1[0]
+    while True:
+        get(player_tiles_1,tiles)
+        w = win_judge(player_tiles_1)
+        if w:
+            print("恭喜你，你赢了,自摸")
+            print("当前牌：",player_tiles_1)
+            break
+        print("当前牌：",player_tiles_1)
+        throw(player_tiles_1)
+
+
+
+
+
+
