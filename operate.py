@@ -1,7 +1,10 @@
 def get(player_tiles_1,tiles):
+    if len(tiles) == 0:
+        print("游戏结束")
+        return False
     g = tiles.pop(0)
     player_tiles_1.append(g)
-    return g
+    return True
 
 def throw(player_tiles_1):
     while True:
